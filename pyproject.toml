@@ -1,9 +1,9 @@
 [tool.poetry]
-name = "chores-app"
+name = ""
 version = "0.1.0"
-description = "An app to plan, track and analyze your house chores"
-authors = ["gmso <german.mene@gmail.com>"]
-license = "MIT License"
+description = ""
+authors = ["author <author@mail.com>"]
+license = ""
 
 [tool.poetry.dependencies]
 python = "^3.7"

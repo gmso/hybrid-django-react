@@ -18,9 +18,12 @@ def get_user_configuration():
     config["description"] = get_user_input(
         "Django project description", "Awesome project"
     )
-    author = get_user_input("Author's name", "author")
-    email = get_user_input("Author's email", "author@mail.com")
-    config["authors"] = f"[{author} <{email}>]"
+    config["author"] = get_user_input(
+        "Author's name", "author"
+    )
+    config["email"] = get_user_input(
+        "Author's email", "author@mail.com"
+    )
     config["license"] = get_user_input(
         "Software license", "MIT License"
     )
@@ -37,8 +40,10 @@ def update_pyproject_dot_toml(config):
     filename = "pyproject.toml"
     with open(filename) as f:
         content = f.read()
-    for p in ("name", "description", "authors", "license"):
+    for p in ("name", "description", "license"):
         content = re.sub(f'{f} = ""', f'{f} = "{config[p]}"', content)
+    content = re.sub(r'author', config["author"], content)
+    content = re.sub(r'author@mail.com', config["email"], content)
     with open(filename, 'w') as f:
         f.write(content)
 
