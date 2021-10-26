@@ -1,5 +1,10 @@
-# chores-app
-An app to plan, track and analyze your house chores
+# Template: Dockerized hybrid Django React app 
+Template using docker to build a Django app that serves React apps statically (as JavaScript files)
+
+## First Setup
+
+Make sure poetry is installed `pip install poetry`
+Execute `py template-setup.py`
 
 ## Debugging with Docker and VSCode
 

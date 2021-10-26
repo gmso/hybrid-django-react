@@ -4,8 +4,6 @@ services:
   web:
     build: .
     command: python /code/manage.py runserver 0.0.0.0:8000
-    #command: gunicorn chores_app_project.wsgi -b 0.0.0.0:8000
-    #command: python /code/manage.py runsslserver 127.0.0.1:8000
     environment:
       - DJANGO_ENVIRONMENT=development
       - DJANGO_SECRET_KEY=django-insecure-@04%uk08cz)mpenm#15f*5zg!0(pnc&p@2pzq6shfwi*%h900f
@@ -14,7 +12,7 @@ services:
       - .:/code
     ports:
       - 8000:8000
-      - 5678:5678
+      - 5678:5678 # for debugging in VSCode
     depends_on:
       - db
   db:
