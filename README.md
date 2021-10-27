@@ -9,9 +9,9 @@ Stack:
 
 ## First Setup
 
-Make sure poetry is installed `pip install poetry`
-Execute `python setup/run.py` 
-or `py setup\run.py` 
+1. Make sure poetry is installed `pip install poetry`
+2. Execute `python setup/run.py` or `py setup\run.py` 
+3. After the project is setup, start the docker container to start working `docker-compose up -d`
 
 ## Debugging with Docker and VSCode
 
