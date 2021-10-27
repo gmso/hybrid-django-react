@@ -2,7 +2,7 @@
 Template using docker to build a Django app that serves React apps statically (as JavaScript files)
 
 Stack:
-  - Django (with Rest framework)
+  - Django (with Rest framework, SMTP gmail backend, whitenoise, etc.)
   - React
   - Docker
   - Deployment to Heroku

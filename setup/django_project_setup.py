@@ -1,10 +1,9 @@
-import re
 import os
 
-from .django_settings_content_changes import get_settings_dot_py_changes
+from django_settings_content_changes import get_settings_dot_py_changes
 
 
-def create(config):
+def create_django_project(config):
     """Entry point: Creates django project"""
     os.system(f"poetry run django-admin startproject {config['name']} .")
     update_manage_dot_py(config)
@@ -39,7 +38,7 @@ def update_settings_dot_py(config):
     filename = f"{config['name']}/settings.py"
     temp_name = f"{filename}_new.txt"
     
-    (INSERTED, SUBSTITUTED, APPENDED) = get_settings_dot_py_changes()
+    (INSERTED, SUBSTITUTED, APPENDED) = get_settings_dot_py_changes(config)
 
     # Add new content
     with open(filename) as f_old, open(temp_name, "w") as f_new:
