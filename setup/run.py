@@ -8,11 +8,13 @@ from django_project_setup import create_django_project
 
 def destroy_setup():
     """Destroy the setup folder with all its content, including this script"""
+    real_path = os.path.realpath(__file__)
+    dir_path = os.path.dirname(real_path)
     subprocess.Popen(
         "python -c \""
         "import shutil, time; "
         "time.sleep(1); "
-        f"shutil.rmtree(os.path.dirname({os.path.realpath(__file__)});\""
+        f"shutil.rmtree({dir_path});\""
     )
     sys.exit(0)
 
