@@ -9,7 +9,7 @@ from django_project_setup import create_django_project
 def destroy_setup():
     """Destroy the setup folder with all its content, including this script"""
     real_path = os.path.realpath(__file__)
-    dir_path = os.path.dirname(real_path)
+    dir_path = os.path.dirname(real_path).replace("\\","\\\\")
     subprocess.Popen(
         "python -c \""
         "import shutil, time; "
