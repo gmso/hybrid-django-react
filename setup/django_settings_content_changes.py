@@ -71,8 +71,8 @@ def get_settings_dot_py_changes(config):
     }
 
     APPENDED = ( # Content appended to end of file
-        #'# Custom User model\n'
-        #'AUTH_USER_MODEL = "users.CustomUser"\n\n'
+        '\n\n# Custom User model\n'
+        'AUTH_USER_MODEL = "users.CustomUser"\n\n'
         '# django-allauth config\n'
         'LOGIN_REDIRECT_URL = "app:dashboard"\n'
         'ACCOUNT_LOGOUT_REDIRECT = "pages:home"\n\n'
