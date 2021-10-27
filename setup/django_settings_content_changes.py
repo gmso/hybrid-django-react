@@ -1,90 +1,7 @@
-import re
-import os
+def get_settings_dot_py_changes(config):
+    """Return dictionaries with changed strings of settings.py"""
 
-def get_user_input(prompt:str, default:str):
-    """Get user input"""
-    user_input = input(f"{prompt} [{default}]: ")
-    if not user_input:
-        user_input = default
-    return user_input
-
-
-def get_user_configuration():
-    """Get user configuration"""
-    config = {}
-    config["name"] = get_user_input(
-        "Django project name", "django_project"
-    )
-    config["description"] = get_user_input(
-        "Django project description", "Awesome project"
-    )
-    config["author"] = get_user_input(
-        "Author's name", "author"
-    )
-    config["email"] = get_user_input(
-        "Author's email", "author@mail.com"
-    )
-    config["license"] = get_user_input(
-        "Software license", "MIT License"
-    )
-    return config
-
-
-def create_django_project(name: str):
-    """Creates django project"""
-    os.system("poetry install")
-    os.system(f"poetry run django-admin startproject {name} .")
-
-
-def update_pyproject_dot_toml(config):
-    filename = "pyproject.toml"
-    with open(filename) as f:
-        content = f.read()
-    for p in ("name", "description", "license"):
-        content = re.sub(rf'({p}) = ""', f'{p} = "{config[p]}"', content)
-    content = re.sub(r'(AUTHOR_POETRY)', config["author"], content)
-    content = re.sub(r'(mail@mail.com)', config["email"], content)
-    with open(filename, 'w') as f:
-        f.write(content)
-
-
-def update_pytest_dot_ini(config):
-    filename = "pytest.ini"
-    with open(filename) as f:
-        content = f.read()
-    content = re.sub(r'(PROJECT)', f'{config["name"]}', content)
-    with open(filename, 'w') as f:
-        f.write(content)
-
-
-def update_manage_dot_py(config):
-    """Adds VSCode debugging support to manage.py"""
-    filename = "manage.py"
-    temp_name = f"{filename}_new.txt"
-    new_content = ("""\
-    from django.conf import settings
-    if settings.DEBUG:
-        if os.environ.get("RUN_MAIN") or os.environ.get("WERKZEUG_RUN_MAIN"):
-            import ptvsd
-
-            ptvsd.enable_attach(address=("0.0.0.0", 5678))
-            # ptvsd.wait_for_attach()
-            print("Attached!")"""
-    )
-    with open(filename) as f_old, open(temp_name, "w") as f_new:
-        for line in f_old:
-            if 'try:' in line:
-                f_new.write(new_content+"\n")
-            f_new.write(line)
-    os.remove(filename)
-    os.rename(temp_name,filename)
-
-
-def update_settings_dot_py(config):
-    """Updates django's settings.py to template standard"""
-    filename = f"{config['name']}/settings.py"
-    temp_name = f"{filename}_new.txt"
-    inserted_content = { # Value inserted before line with key
+    INSERTED = { # Value inserted before line with key
         "from pathlib import Path": "import sys, os\n",
         "# Quick-start development settings": (
             '# Environment flag\n'
@@ -124,7 +41,8 @@ def update_settings_dot_py(config):
             ']\n'
         ),
     }
-    substituted_content = { # Line with key is substituted with content
+
+    SUBSTITUTED = { # Line with key is substituted with content
         "SECRET_KEY = ": 'SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY",default="django-insecure-@04%uk08cz)mpenm#15f*5zg!0(pnc&p@2pzq6shfwi*%h900f",)\n\n',
         "DEBUG = True": 'DEBUG = os.environ.get("DJANGO_DEBUG", default="True") == "True"\n',
         "ALLOWED_HOSTS = []" : 'ALLOWED_HOSTS = ["localhost","127.0.0.1",]\n',
@@ -151,7 +69,8 @@ def update_settings_dot_py(config):
             '       "PORT": 5432,\n'
         ),
     }
-    appended_content = ( # Content appended to end of file
+
+    APPENDED = ( # Content appended to end of file
         #'# Custom User model\n'
         #'AUTH_USER_MODEL = "users.CustomUser"\n\n'
         '# django-allauth config\n'
@@ -221,45 +140,4 @@ def update_settings_dot_py(config):
         'DATABASES["default"].update(db_from_env)\n\n'
     )
 
-    # Add new content
-    with open(filename) as f_old, open(temp_name, "w") as f_new:
-        for line in f_old:
-            for (key, value) in inserted_content.items():
-                if key in line:
-                    f_new.write(value)
-                    inserted_content.pop(key, None)
-                    break
-            f_new.write(line)
-    os.remove(filename)
-    os.rename(temp_name,filename)
-
-    # Replace content
-    with open(filename) as f_old, open(temp_name, "w") as f_new:
-        for line in f_old:
-            for (key, value) in substituted_content.items():
-                if key in line:
-                    f_new.write(value)
-                    substituted_content.pop(key, None)
-                    break
-            else:
-                f_new.write(line)
-    os.remove(filename)
-    os.rename(temp_name,filename)
-
-    # Append content
-    with open(filename, 'a') as f:
-        f.write(appended_content)
-
-
-def main():
-    """Main entry point"""
-    config = get_user_configuration()
-    update_pyproject_dot_toml(config)
-    update_pytest_dot_ini(config)
-    create_django_project(config["name"])
-    update_manage_dot_py(config)
-    update_settings_dot_py(config)
-
-
-if __name__ == "__main__":
-    main()
+    return (INSERTED, SUBSTITUTED, APPENDED)
