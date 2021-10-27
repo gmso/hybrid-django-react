@@ -8,7 +8,6 @@ def create_django_project(config):
     os.system(f"poetry run django-admin startproject {config['name']} .")
     update_manage_dot_py(config)
     update_settings_dot_py(config)
-    add_custom_user()
 
 
 def update_manage_dot_py(config):
@@ -69,14 +68,3 @@ def update_settings_dot_py(config):
     # Append content
     with open(filename, 'a') as f:
         f.write(APPENDED)
-
-
-def add_custom_user():
-    """Adds custom user to django project"""
-    os.system(f"poetry run manage.py startapp users")
-    with open("users/models.py", 'w') as f:
-        f.write(
-            "from django.contrib.auth.models import AbstractUser\n\n"
-            "class CustomUser(AbstractUser):"
-            "   pass"
-        )

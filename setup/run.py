@@ -3,7 +3,9 @@ import os, sys, subprocess
 from user_config import get_user_config
 from poetry_setup import setup_poetry
 from pytest_setup import setup_pytest
-from django_project_setup import create_django_project 
+from django_project_setup import create_django_project
+from docker_build import docker_build_and_start, docker_stop
+from django_user_model import add_custom_user_from_docker
 
 
 def destroy_setup():
@@ -42,6 +44,15 @@ def main():
     
     print("\n  ■ Creating Django project\n")
     create_django_project(config)
+
+    print("\n  ■ Initializing Docker container\n")
+    docker_build_and_start()
+
+    print("\n  ■ Creating custom User in Django app 'users'\n")
+    add_custom_user_from_docker()
+
+    print("\n  ■ Stopping Docker container\n")
+    docker_stop()
     
     print("\n  ■ Finishing...\n")
     destroy_setup()
