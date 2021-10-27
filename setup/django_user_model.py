@@ -27,3 +27,5 @@ def add_custom_user_from_docker(config):
                 f_new.write(new_line+"\n")
             else:
                 f_new.write(line)
+    os.remove(filename)
+    os.rename(temp_name,filename)
