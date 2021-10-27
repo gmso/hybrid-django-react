@@ -1,10 +1,17 @@
+import random
 import os
+import string
 
 
 def change_project_urls(config):
     """Overwrite project's urls.py file"""
     filename = f"{config['name']}/urls.py"
     temp_name = f"{filename}_new.txt"
+
+    random_admin_url = (
+        ''.join(random.SystemRandom()
+        .choice(string.ascii_letters + string.digits)
+         for _ in range(20)))
 
     with open(temp_name, "w") as f:
         f.write(
@@ -15,7 +22,7 @@ def change_project_urls(config):
             'from users.views import CustomLoginView\n\n'
             'urlpatterns = [\n'
             '    # Django admin:\n'
-            '    path("ceoenterpreneurbornin1964/", admin.site.urls),\n'
+            f'    path("{random_admin_url}/", admin.site.urls),\n'
             '    # User management:\n'
             '    path("accounts/", include("allauth.urls")),\n'
             '    # Local apps:\n'
