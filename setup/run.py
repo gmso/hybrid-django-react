@@ -24,9 +24,9 @@ def destroy_setup():
 
 def greet():
     """Greet user and output information"""
-    print("\n\n■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
+    print("\n\n■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
     print("■■■  Hybrid Django React Starter Project  ■■")
-    print("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
+    print("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
     print("\n\n## Setting up project structure ##\n")
 
 
