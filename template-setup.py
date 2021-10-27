@@ -85,7 +85,11 @@ def update_settings_dot_py(config):
     filename = f"{config['name']}/settings.py"
     temp_name = f"{filename}_new.txt"
     inserted_content = { # Value inserted before line with key
-        "from pathlib import Path": "import sys, os",
+        "from pathlib import Path": "import sys, os\n",
+        "# Quick-start development settings": (
+            '# Environment flag\n'
+            'ENVIRONMENT = os.environ.get("DJANGO_ENVIRONMENT", default="development")\n\n'
+        ),
         "ALLOWED_HOSTS = []": (
             'if ENVIRONMENT == "production":\n'
             '    SECURE_BROWSER_XSS_FILTER = True\n'
@@ -97,7 +101,7 @@ def update_settings_dot_py(config):
             '    SECURE_CONTENT_TYPE_NOSNIFF = True\n'
             '    SESSION_COOKIE_SECURE = True\n'
             '    CSRF_COOKIE_SECURE = True\n'
-            '    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")\n'
+            '    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")\n\n'
         ),
         "django.contrib.staticfiles": '"whitenoise.runserver_nostatic",\n',
         "# Static files (CSS, JavaScript, Images)": (
@@ -121,9 +125,9 @@ def update_settings_dot_py(config):
         ),
     }
     substituted_content = { # Line with key is substituted with content
-        "SECRET_KEY = ": 'SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY",default="django-insecure-@04%uk08cz)mpenm#15f*5zg!0(pnc&p@2pzq6shfwi*%h900f",)',
-        "DEBUG = True": 'DEBUG = os.environ.get("DJANGO_DEBUG", default="True") == "True"',
-        "ALLOWED_HOSTS = []" : 'ALLOWED_HOSTS = ["localhost","127.0.0.1",]',
+        "SECRET_KEY = ": 'SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY",default="django-insecure-@04%uk08cz)mpenm#15f*5zg!0(pnc&p@2pzq6shfwi*%h900f",)\n\n',
+        "DEBUG = True": 'DEBUG = os.environ.get("DJANGO_DEBUG", default="True") == "True"\n\n',
+        "ALLOWED_HOSTS = []" : 'ALLOWED_HOSTS = ["localhost","127.0.0.1",]\n\n',
         '"django.contrib.staticfiles",':(
             '   "django.contrib.staticfiles",\n'
             '   "django.contrib.sites",\n'
