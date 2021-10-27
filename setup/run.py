@@ -22,24 +22,24 @@ def destroy_setup():
 
 def greet():
     """Greet user and output information"""
-    print("\n\n------- [Hybrid Django React] --- Setting up project structure -----\n")
+    print("\n\n [Hybrid Django React] -> Setting up project structure\n")
 
 def main():
     """Main entry point"""
     greet()
-    print("\n--- Please introduce the project's metadata ---\n")
+    print("\n### Please introduce the project's metadata ###\n")
     config = get_user_config()
 
-    print("\n--- Setting up poetry ---\n")
+    print("\n### Setting up poetry ###\n")
     setup_poetry(config)
     
-    print("\n--- Setting up pytest ---\n")
+    print("\n### Setting up pytest ###\n")
     setup_pytest(config)
     
-    print("\n--- Creating Django project ---\n")
+    print("\n### Creating Django project ###\n")
     create_django_project(config)
     
-    print("\n--- Finishing... ---\n")
+    print("\n### Finishing... ###\n")
     destroy_setup()
 
 
