@@ -73,7 +73,7 @@ def update_settings_dot_py(config):
 
 def add_custom_user():
     """Adds custom user to django project"""
-    os.system(f"poetry run python startapp users")
+    os.system(f"poetry run manage.py startapp users")
     with open("users/models.py", 'w') as f:
         f.write(
             "from django.contrib.auth.models import AbstractUser\n\n"
