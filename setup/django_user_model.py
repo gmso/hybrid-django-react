@@ -37,3 +37,7 @@ def add_custom_user_from_docker(config):
                 f_new.write(line)
     os.remove(filename)
     os.rename(temp_name,filename)
+
+    # Perform database migration
+    os.system("docker-compose exec web python manage.py makemigrations")
+    os.system("docker-compose exec web python manage.py migrate")
