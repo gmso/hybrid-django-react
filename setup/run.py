@@ -14,7 +14,8 @@ def destroy_setup():
         "python -c \""
         "import shutil, time; "
         "time.sleep(1); "
-        f"shutil.rmtree('{dir_path}');\""
+        f"shutil.rmtree('{dir_path}');\"",
+        shell=True,
     )
     sys.exit(0)
 
