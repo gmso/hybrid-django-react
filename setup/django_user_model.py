@@ -1,5 +1,6 @@
 import os
 
+
 def add_custom_user_from_docker(config):
     """Adds custom user to django project"""
 

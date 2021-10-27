@@ -24,9 +24,9 @@ def destroy_setup():
 
 def greet():
     """Greet user and output information"""
-    print("\n\n#####################")
-    print("[Hybrid Django React]")
-    print("#####################")
+    print("\n\n■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
+    print("■■■  Hybrid Django React Starter Project  ■■")
+    print("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
     print("\n\n## Setting up project structure ##\n")
 
 
@@ -49,7 +49,7 @@ def main():
     docker_build_and_start()
 
     print("\n  ■ Creating custom User in Django app 'users'\n")
-    add_custom_user_from_docker()
+    add_custom_user_from_docker(config)
 
     print("\n  ■ Stopping Docker container\n")
     docker_stop()
