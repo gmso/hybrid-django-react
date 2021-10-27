@@ -1,4 +1,4 @@
-import sys, subprocess
+import os, sys, subprocess
 
 from user_config import get_user_config
 from poetry_setup import setup_poetry
@@ -12,7 +12,7 @@ def destroy_setup():
         "python -c \""
         "import shutil, time; "
         "time.sleep(1); "
-        f"shutil.rmtree('os.path.dirname({sys.argv[0]}');\""
+        f"shutil.rmtree('os.path.dirname({os.path.realpath(__file__)}');\""
     )
     sys.exit(0)
 
