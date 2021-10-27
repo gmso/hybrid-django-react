@@ -1,6 +1,12 @@
 # Template: Dockerized hybrid Django React app 
 Template using docker to build a Django app that serves React apps statically (as JavaScript files)
 
+Stack:
+  - Django (with Rest framework)
+  - React
+  - Docker
+  - Deployment to Heroku
+
 ## First Setup
 
 Make sure poetry is installed `pip install poetry`
@@ -25,7 +31,7 @@ To debug with Docker:
 4. Set some breakpoints in functions or methods executed when needed. Usually it's Model methods or View functions
 
 ## Deploy to Heroku
-Followed guide of "Django for professionals" bool
+Followed guide of "Django for professionals" book
 
 Deploy by pushing to Heroku git repository:
 ```git push heroku main```
