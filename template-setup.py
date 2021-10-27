@@ -57,6 +57,28 @@ def update_pytest_dot_ini(config):
         f.write(content)
 
 
+def update_manage_dot_py(config):
+    """Adds VSCode debugging support to manage.py"""
+    filename = "manage.py"
+    temp_name = f"{filename}_new.txt"
+    new_content = ("""\
+    from django.conf import settings
+    if settings.DEBUG:
+        if os.environ.get("RUN_MAIN") or os.environ.get("WERKZEUG_RUN_MAIN"):
+            import ptvsd
+
+            ptvsd.enable_attach(address=("0.0.0.0", 5678))
+            # ptvsd.wait_for_attach()
+            print("Attached!")"""
+    )
+    with open(filename) as f_old, open(temp_name, "w") as f_new:
+        for line in f_old:
+            if 'try:' in line:
+                f_new.write(new_content+"\n")
+            f_new.write(line)
+    os.remove(filename)
+    os.rename(temp_name,filename)
+
 
 def main():
     """Main entry point"""
@@ -64,6 +86,7 @@ def main():
     update_pyproject_dot_toml(config)
     update_pytest_dot_ini(config)
     create_django_project(config["name"])
+    update_manage_dot_py(config)
 
 
 if __name__ == "__main__":
