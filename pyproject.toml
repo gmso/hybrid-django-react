@@ -2,7 +2,7 @@
 name = ""
 version = "0.1.0"
 description = ""
-authors = ["author <author@mail.com>"]
+authors = ["AUTHOR_POETRY <mail@mail.com>"]
 license = ""
 
 [tool.poetry.dependencies]
