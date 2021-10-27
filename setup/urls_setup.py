@@ -23,7 +23,7 @@ def change_project_urls(config):
             '    # Django admin:\n'
             f'    path("{random_admin_url}/", admin.site.urls),\n'
             '    # User management:\n'
-            '    path("accounts/", include("allauth.urls")),\n'
+            '    #path("accounts/", include("allauth.urls")),\n'
             '    # Local apps:\n'
             ']\n\n'
             'if settings.DEV_MODE:\n'
