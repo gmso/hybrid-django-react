@@ -103,7 +103,7 @@ def update_settings_dot_py(config):
             '    CSRF_COOKIE_SECURE = True\n'
             '    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")\n\n'
         ),
-        "django.contrib.staticfiles": '"whitenoise.runserver_nostatic",\n',
+        "django.contrib.staticfiles": '    "whitenoise.runserver_nostatic",\n',
         "# Static files (CSS, JavaScript, Images)": (
             "LOCALE_PATHS = [\n"
             "    os.path.join(BASE_DIR, 'locale'),\n"
@@ -111,7 +111,7 @@ def update_settings_dot_py(config):
             "LANGUAGES = [\n"
             "   ('en-us', 'English'),\n"
             "   ('es', 'Spanish'),\n"
-            "]\n"
+            "]\n\n"
         ),
         "STATIC_URL = '/static/'": (
             'STATICFILES_DIRS = [\n'
@@ -126,20 +126,20 @@ def update_settings_dot_py(config):
     }
     substituted_content = { # Line with key is substituted with content
         "SECRET_KEY = ": 'SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY",default="django-insecure-@04%uk08cz)mpenm#15f*5zg!0(pnc&p@2pzq6shfwi*%h900f",)\n\n',
-        "DEBUG = True": 'DEBUG = os.environ.get("DJANGO_DEBUG", default="True") == "True"\n\n',
-        "ALLOWED_HOSTS = []" : 'ALLOWED_HOSTS = ["localhost","127.0.0.1",]\n\n',
-        '"django.contrib.staticfiles",':(
-            '   "django.contrib.staticfiles",\n'
-            '   "django.contrib.sites",\n'
-            '   # Third party\n'
-            '   "allauth",\n'
-            '   "allauth.account",\n'
-            '   # Local\n'
+        "DEBUG = True": 'DEBUG = os.environ.get("DJANGO_DEBUG", default="True") == "True"\n',
+        "ALLOWED_HOSTS = []" : 'ALLOWED_HOSTS = ["localhost","127.0.0.1",]\n',
+        "django.contrib.staticfiles":(
+            '    "django.contrib.staticfiles",\n'
+            '    "django.contrib.sites",\n'
+            '    # Third party\n'
+            '    "allauth",\n'
+            '    "allauth.account",\n'
+            '    # Local\n'
         ),
         "'django.contrib.sessions.middleware.SessionMiddleware',": (
-            "   'whitenoise.middleware.WhiteNoiseMiddleware',\n"
-            "   'django.contrib.sessions.middleware.SessionMiddleware',\n"
-            "   'django.middleware.locale.LocaleMiddleware',\n"
+            "    'whitenoise.middleware.WhiteNoiseMiddleware',\n"
+            "    'django.contrib.sessions.middleware.SessionMiddleware',\n"
+            "    'django.middleware.locale.LocaleMiddleware',\n"
         ),
         "'ENGINE': 'django.db.backends.sqlite3',": "",
         "'NAME': BASE_DIR / 'db.sqlite3',": (
@@ -152,8 +152,8 @@ def update_settings_dot_py(config):
         ),
     }
     appended_content = ( # Content appended to end of file
-        '# Custom User model\n'
-        'AUTH_USER_MODEL = "users.CustomUser"\n\n'
+        #'# Custom User model\n'
+        #'AUTH_USER_MODEL = "users.CustomUser"\n\n'
         '# django-allauth config\n'
         'LOGIN_REDIRECT_URL = "app:dashboard"\n'
         'ACCOUNT_LOGOUT_REDIRECT = "pages:home"\n\n'
@@ -170,7 +170,6 @@ def update_settings_dot_py(config):
         '    "signup": "users.forms.CustomSignupForm",\n'
         '}\n'
         'AUTHENTICATION_BACKENDS = (\n'
-        '    "rules.permissions.ObjectPermissionBackend",\n'
         '    "django.contrib.auth.backends.ModelBackend",\n'
         '    "allauth.account.auth_backends.AuthenticationBackend",\n'
         ')\n\n'
@@ -234,7 +233,7 @@ def update_settings_dot_py(config):
     os.remove(filename)
     os.rename(temp_name,filename)
 
-    # Replace content and append at end of file
+    # Replace content
     with open(filename) as f_old, open(temp_name, "w") as f_new:
         for line in f_old:
             for (key, value) in substituted_content.items():
@@ -244,11 +243,12 @@ def update_settings_dot_py(config):
                     break
             else:
                 f_new.write(line)
-            if not line.endswith('\n'):
-                # This is the last line / end of file
-                f_new.write(appended_content)
     os.remove(filename)
     os.rename(temp_name,filename)
+
+    # Append content
+    with open(filename, 'a') as f:
+        f.write(appended_content)
 
 
 def main():
