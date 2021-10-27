@@ -6,6 +6,7 @@ from pytest_setup import setup_pytest
 from django_project_setup import create_django_project
 from docker_build import docker_build_and_start, docker_stop
 from django_user_model import add_custom_user_from_docker
+from urls_setup import change_project_urls
 
 
 def destroy_setup():
@@ -50,6 +51,9 @@ def main():
 
     print("\n  ■ Creating custom User in Django app 'users'\n")
     add_custom_user_from_docker(config)
+
+    print("\n  ■ Changing urls of project\n")
+    change_project_urls(config)
 
     print("\n  ■ Stopping Docker container\n")
     docker_stop()
