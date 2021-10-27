@@ -10,7 +10,8 @@ Stack:
 ## First Setup
 
 Make sure poetry is installed `pip install poetry`
-Execute `py template-setup.py`
+Execute `python setup/run.py` 
+or `py setup\run.py` 
 
 ## Debugging with Docker and VSCode
 
