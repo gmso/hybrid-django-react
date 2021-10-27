@@ -19,7 +19,6 @@ def change_project_urls(config):
             'from django.contrib import admin\n'
             'from django.urls import path, include\n\n'
             'import debug_toolbar\n\n'
-            'from users.views import CustomLoginView\n\n'
             'urlpatterns = [\n'
             '    # Django admin:\n'
             f'    path("{random_admin_url}/", admin.site.urls),\n'
