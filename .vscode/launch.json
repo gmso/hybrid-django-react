@@ -18,5 +18,23 @@
             "port": 5678,
             "host": "127.0.0.1",
         },
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "Python: Django PYTEST",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\manage.py",
+            "args": [
+                "pytest"
+            ],
+            "django": true
+        },
     ]
 }

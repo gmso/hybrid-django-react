@@ -3,7 +3,7 @@ import os
 
 def get_user_input(prompt:str, default:str):
     """Get user input"""
-    user_input = input(f"{prompt} [{default}]")
+    user_input = input(f"{prompt} [{default}]: ")
     if not user_input:
         user_input = default
     return user_input
@@ -41,9 +41,10 @@ def update_pyproject_dot_toml(config):
     with open(filename) as f:
         content = f.read()
     for p in ("name", "description", "license"):
-        content = re.sub(f'{f} = ""', f'{f} = "{config[p]}"', content)
-    content = re.sub(r'author', config["author"], content)
-    content = re.sub(r'author@mail.com', config["email"], content)
+        content = re.sub(rf'({p}) = ""', f'{p} = "{config[p]}"', content)
+    content = re.sub(r'(author)', config["author"], content)
+    content = re.sub(r'(author@mail.com)', config["email"], content)
+    print(content)
     with open(filename, 'w') as f:
         f.write(content)
 
@@ -52,7 +53,7 @@ def update_pytest_dot_ini(config):
     filename = "pytest.ini"
     with open(filename) as f:
         content = f.read()
-    content = re.sub('PROJECT', f'{f} = "{config["name"]}"', content)
+    content = re.sub(r'(PROJECT)', f'{f} = "{config["name"]}"', content)
     with open(filename, 'w') as f:
         f.write(content)
 
