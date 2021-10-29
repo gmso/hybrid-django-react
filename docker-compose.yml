@@ -29,6 +29,7 @@ services:
     command: npm run dev 
     volumes:
       - .:/code
+      - /code/node_modules
     ports:
       - "80:3000"
     depends_on:
