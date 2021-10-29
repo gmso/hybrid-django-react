@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --mode development --watch" 
+    "dev": "webpack --mode development --watch"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/gmso/hybrid-django-react/issues"
   },
-  "homepage": "https://github.com/gmso/hybrid-django-react#readme"
+  "homepage": "https://github.com/gmso/hybrid-django-react#readme",
+  "devDependencies": {
+    "webpack": "^5.61.0",
+    "webpack-cli": "^4.9.1"
+  }
 }
