@@ -1,0 +1,11 @@
+# Pull base image
+FROM node:latest
+
+# Copy only requirements to cache them in docker layer
+WORKDIR /code
+RUN npm init -y
+
+RUN npm install webpack webpack-cli --save-dev
+
+# Copy project
+COPY . /code/
