@@ -10,7 +10,7 @@ module.exports = {
   watch: true,
   watchOptions: {
     aggregateTimeout: 500, // delay before reloading
-    poll: 500 // enable polling since fsevents are not supported in docker
+    poll: 1000 // enable polling since fsevents are not supported in docker
   },
   devServer: {
     port: 80, // use any port suitable for your configuration
