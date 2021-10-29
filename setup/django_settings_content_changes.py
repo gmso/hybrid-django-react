@@ -20,6 +20,7 @@ def get_settings_dot_py_changes(config):
             '    CSRF_COOKIE_SECURE = True\n'
             '    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")\n\n'
         ),
+        '"APP_DIRS": True,': '        "DIRS": [str(Path(BASE_DIR, "templates"))],\n',
         "django.contrib.staticfiles": '    "whitenoise.runserver_nostatic",\n',
         "# Static files (CSS, JavaScript, Images)": (
             "LOCALE_PATHS = [\n"
