@@ -59,11 +59,11 @@ def main():
     print("\n  ■ Formatting python files\n")
     format_with_black()
 
-    print("\n  ■ Stopping Docker container\n")
-    docker_stop()
+    # print("\n  ■ Stopping Docker container\n")
+    # docker_stop()
     
-    print("\n  ■ Finishing...\n")
-    destroy_setup()
+    # print("\n  ■ Finishing...\n")
+    # destroy_setup()
 
 
 if __name__ == "__main__":

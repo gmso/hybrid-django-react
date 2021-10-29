@@ -3,7 +3,7 @@ FROM node:latest
 
 # Copy only requirements to cache them in docker layer
 WORKDIR /code
-COPY package*.json /app/
+COPY package*.json /code/
 
 RUN npm install
 
@@ -11,5 +11,3 @@ RUN npm install
 COPY . /code/
 
 EXPOSE 3000
-
-CMD npm run dev
