@@ -1,0 +1,21 @@
+{
+  "name": "hybrid-django-react",
+  "version": "1.0.0",
+  "description": "Template using docker to build a Django app that serves React apps statically (as JavaScript files)",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development --watch" 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gmso/hybrid-django-react.git"
+  },
+  "keywords": [],
+  "author": "German Mene Santa Olaya <german.mene@gmail.com> (https://github.com/gmso)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gmso/hybrid-django-react/issues"
+  },
+  "homepage": "https://github.com/gmso/hybrid-django-react#readme"
+}
