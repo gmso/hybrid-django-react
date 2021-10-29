@@ -26,7 +26,7 @@ def change_project_urls(config):
             '    # User management:\n'
             '    #path("accounts/", include("allauth.urls")),\n'
             '    # Local apps:\n'
-            '    path("/", TemplateView.as_view(template_name="index.html")),\n'
+            '    path("", TemplateView.as_view(template_name="index.html")),\n'
             ']\n\n'
             'if settings.DEV_MODE:\n'
             '    import debug_toolbar\n\n'
