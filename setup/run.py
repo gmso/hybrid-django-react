@@ -7,6 +7,7 @@ from django_project_setup import create_django_project
 from docker_build import docker_build_and_start, docker_stop
 from django_user_model import add_custom_user_from_docker
 from urls_setup import change_project_urls
+from format_code import format_with_black
 
 
 def destroy_setup():
@@ -54,6 +55,9 @@ def main():
 
     print("\n  ■ Changing urls of project\n")
     change_project_urls(config)
+
+    print("\n  ■ Formatting python files\n")
+    format_with_black()
 
     print("\n  ■ Stopping Docker container\n")
     docker_stop()
