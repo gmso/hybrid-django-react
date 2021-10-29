@@ -3,9 +3,13 @@ FROM node:latest
 
 # Copy only requirements to cache them in docker layer
 WORKDIR /code
-COPY package.json /app/
+COPY package*.json /app/
 
-RUN npm install webpack webpack-cli --save-dev
+RUN npm install
 
 # Copy project
 COPY . /code/
+
+EXPOSE 3000
+
+CMD npm run dev
