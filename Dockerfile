@@ -1,9 +1,8 @@
 # Pull base image
 FROM python:3.7
 
-# Environment variables available during image creation
-#ARG ENVIRONMENT
-
+####### DJANGO PROJECT #######
+# GNU's gettext used for Django's internationalization
 RUN apt-get update \
  && apt-get install -y gettext
 
@@ -33,3 +32,11 @@ RUN poetry config virtualenvs.create false \
 
 # Copy project
 COPY . /code/
+
+
+####### React frontend #######
+# Install npm, create project and install webpack
+RUN apt-get update \
+ && apt-get install -y npm
+RUN npm init -y
+RUN npm install webpack webpack-cli --save-dev

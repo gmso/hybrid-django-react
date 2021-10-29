@@ -22,6 +22,15 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes: 
      - postgres_data:/var/lib/postgresql/data
+  frontend:
+    build: .
+    command: npm webpack --mode development --watch 
+    volumes:
+      - .:/code
+    ports:
+      - "80:3000"
+    depends_on:
+      - web
 
 volumes: 
   postgres_data:
