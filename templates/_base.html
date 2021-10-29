@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="household chore collaboration planner"/>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet"> 
+
+  <title>{% block title %}Base{% endblock title %} {% if request.path != "/" %} | {% endif %} WEBSITE NAME</title>
+</head>
+
+<body>
+  <script src="{% static 'index-bundle.js' %}"></script>
+  <main>
+    {% block content %}{% endblock content %}
+  </main>
+</body>
+
+</html>
