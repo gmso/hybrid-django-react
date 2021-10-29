@@ -23,7 +23,9 @@ services:
     volumes: 
      - postgres_data:/var/lib/postgresql/data
   frontend:
-    build: .
+    build:
+      context: ./
+      dockerfile: Dockerfile_frontend 
     command: npm webpack --mode development --watch 
     volumes:
       - .:/code
