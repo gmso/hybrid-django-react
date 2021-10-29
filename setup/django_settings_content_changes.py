@@ -20,7 +20,6 @@ def get_settings_dot_py_changes(config):
             '    CSRF_COOKIE_SECURE = True\n'
             '    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")\n\n'
         ),
-        'APP_DIRS': '        "DIRS": [str(Path(BASE_DIR, "templates"))],\n',
         "django.contrib.staticfiles": '    "whitenoise.runserver_nostatic",\n',
         "# Static files (CSS, JavaScript, Images)": (
             "LOCALE_PATHS = [\n"
@@ -47,6 +46,7 @@ def get_settings_dot_py_changes(config):
         "SECRET_KEY = ": 'SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY",default="django-insecure-@04%uk08cz)mpenm#15f*5zg!0(pnc&p@2pzq6shfwi*%h900f",)\n\n',
         "DEBUG = True": 'DEBUG = os.environ.get("DJANGO_DEBUG", default="True") == "True"\n',
         "ALLOWED_HOSTS = []" : 'ALLOWED_HOSTS = ["localhost","127.0.0.1",]\n',
+        '"DIRS: []"': '        "DIRS": [str(Path(BASE_DIR, "templates"))],\n',
         "django.contrib.staticfiles":(
             '    "django.contrib.staticfiles",\n'
             '    "django.contrib.sites",\n'
