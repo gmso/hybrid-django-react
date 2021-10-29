@@ -1,6 +1,9 @@
 # Pull base image
 FROM node:latest
 
+RUN apt-get update \
+ && apt-get install -y inotify-tools
+
 # Copy only requirements to cache them in docker layer
 WORKDIR /code
 COPY package*.json /code/

@@ -1,7 +1,6 @@
 # Pull base image
 FROM python:3.7
 
-####### DJANGO PROJECT #######
 # GNU's gettext used for Django's internationalization
 RUN apt-get update \
  && apt-get install -y gettext
