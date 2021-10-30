@@ -63,12 +63,19 @@ def main():
     print("\n  ■ Formatting python files\n")
     format_with_black()
 
-    # print("\n  ■ Stopping Docker container\n")
-    # docker_stop()
+    print("\n  ■ Stopping Docker container\n")
+    docker_stop()
     
-    # print("\n  ■ Finishing...\n")
+    print("\n  ■ Finishing...\n")
     # destroy_setup()
 
+    print("\n\n■■ Finished! Your Django React project is set up! ■■\n")
+
+    print("\n\n■ To start working, spin up your container with the command 'docker-compose up -d'\n")
+
+    print("\n\n■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
+    print("■■■  Thank you for using this Hybrid Django React Starter Project, bye!  ■■")
+    print("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
 
 if __name__ == "__main__":
     main()
