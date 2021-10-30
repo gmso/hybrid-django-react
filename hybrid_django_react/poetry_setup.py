@@ -6,8 +6,8 @@ def setup_poetry(config):
     """Entry point of module: setup poetry files and run poetry commands"""
     update_pyproject_dot_toml(config)
     update_pyproject_dot_toml(config)
-    lock_poetry_dependencies()
-    install_dependencies()
+    #lock_poetry_dependencies()
+    #install_dependencies()
 
 
 def lock_poetry_dependencies():
