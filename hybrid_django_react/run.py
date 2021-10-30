@@ -1,7 +1,7 @@
 import os, sys, subprocess
 
 from .user_config import get_user_config
-from .poetry_setup import setup_poetry
+from .poetry_setup import setup_poetry, lock_poetry_dependencies_on_docker
 from .pytest_setup import setup_pytest
 from .django_project_setup import create_django_project
 from .docker_build import docker_build_and_start, docker_stop
@@ -42,14 +42,17 @@ def main():
     print("\n  ■ Copying assets\n")
     copy_assets_to_current_dir()
 
-    print("\n  ■ Setting up poetry\n")
+    print("\n  ■ Customizing poetry files\n")
     setup_poetry(config)
     
-    print("\n  ■ Setting up pytest\n")
+    print("\n  ■ Customizing pytest files\n")
     setup_pytest(config)
     
     print("\n  ■ Initializing Docker container\n")
     docker_build_and_start()
+
+    print("\n  ■ Locking poetry dependencies\n")
+    lock_poetry_dependencies_on_docker(config)
 
     print("\n  ■ Creating Django project\n")
     create_django_project(config)

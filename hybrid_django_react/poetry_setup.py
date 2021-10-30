@@ -10,9 +10,9 @@ def setup_poetry(config):
     #install_dependencies()
 
 
-def lock_poetry_dependencies():
+def lock_poetry_dependencies_on_docker():
     """Create poetry.lock file"""
-    os.system("poetry lock")
+    os.system("docker-compose exec web poetry lock")
 
 
 def install_dependencies():
