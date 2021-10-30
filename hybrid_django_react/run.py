@@ -48,11 +48,11 @@ def main():
     print("\n  ■ Setting up pytest\n")
     setup_pytest(config)
     
-    print("\n  ■ Creating Django project\n")
-    create_django_project(config)
-
     print("\n  ■ Initializing Docker container\n")
     docker_build_and_start()
+
+    print("\n  ■ Creating Django project\n")
+    create_django_project(config)
 
     print("\n  ■ Creating custom User in Django app 'users'\n")
     add_custom_user_from_docker(config)

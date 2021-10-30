@@ -5,7 +5,7 @@ from .django_settings_content_changes import get_settings_dot_py_changes
 
 def create_django_project(config):
     """Entry point: Creates django project"""
-    os.system(f"poetry run django-admin startproject {config['name']} .")
+    os.system(f"docker-compose exec web django-admin startproject {config['name']} .")
     update_manage_dot_py(config)
     update_settings_dot_py(config)
 
