@@ -23,7 +23,7 @@ RUN pip install "poetry==$POETRY_VERSION"
 
 # Copy only requirements to cache them in docker layer
 WORKDIR /code
-COPY poetry.lock pyproject.toml /code/
+COPY pyproject.toml /code/
 
 # Project initialization with its dependencies, without virtual environment (not needed in Docker containers)
 RUN poetry config virtualenvs.create false \
