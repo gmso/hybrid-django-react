@@ -8,6 +8,7 @@ from .docker_build import docker_build_and_start, docker_stop
 from .django_user_model import add_custom_user_from_docker
 from .urls_setup import change_project_urls
 from .format_code import format_with_black
+from .copy_assets import copy_assets_to_current_dir
 
 
 def destroy_setup():
@@ -29,7 +30,7 @@ def greet():
     print("\n\n■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
     print("■■■  Hybrid Django React Starter Project  ■■")
     print("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■")
-    print("\n\n## Setting up project structure ##\n")
+    print("\n\n■■ Setting up project structure ■■\n")
 
 
 def main():
@@ -37,6 +38,9 @@ def main():
     greet()
     print("\n  ■ Please introduce the project's metadata\n")
     config = get_user_config()
+    
+    print("\n  ■ Copying assets\n")
+    copy_assets_to_current_dir()
 
     print("\n  ■ Setting up poetry\n")
     setup_poetry(config)
