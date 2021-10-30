@@ -51,8 +51,8 @@ def main():
     print("\n  ■ Initializing Docker container\n")
     docker_build_and_start()
 
-    print("\n  ■ Locking poetry dependencies\n")
-    lock_poetry_dependencies_on_docker(config)
+    #print("\n  ■ Locking poetry dependencies\n")
+    #lock_poetry_dependencies_on_docker()
 
     print("\n  ■ Creating Django project\n")
     create_django_project(config)

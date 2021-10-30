@@ -25,6 +25,9 @@ RUN pip install "poetry==$POETRY_VERSION"
 WORKDIR /code
 COPY pyproject.toml /code/
 
+# Lock dependencies
+RUN poetry lock
+
 # Project initialization with its dependencies, without virtual environment (not needed in Docker containers)
 RUN poetry config virtualenvs.create false \
   && poetry install $(test "$ENVIRONMENT" == production && echo "--no-dev") --no-interaction --no-ansi
