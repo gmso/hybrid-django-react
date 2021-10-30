@@ -4,6 +4,19 @@ version = "0.0.1"
 description = "Django starter project template. Dockerized Django serving a static React app"
 authors = ["gmso <german.mene@gmail.com>"]
 license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/gmso/hybrid-django-react"
+keywords = ["Django", "React", "Starter project"]
+classifiers = [
+    "Programming Language :: Python :: 3.7",
+    "Framework :: Django",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+]
+
+[tool.poetry.scripts]
+run = 'hybrid_django_react:run.py:main'
 
 [tool.poetry.dependencies]
 python = "^3.7"
