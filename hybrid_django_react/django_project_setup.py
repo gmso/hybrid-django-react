@@ -1,19 +1,33 @@
 import os
+import shutil
+import sys
 
 from .django_settings_content_changes import get_settings_dot_py_changes
 
 
 def create_django_project(config):
     """Entry point: Creates django project"""
+    was_in_virtualenv = start_venv_if_needed()
     install_django(config)
     start_project_django_admin(config)
     update_manage_dot_py(config)
     update_settings_dot_py(config)
+    
+    if not was_in_virtualenv:
+        deactivate_and_delete_venv()
+
+
+def start_venv_if_needed():
+    """Start virtual env. if needed. Returns True if it was activated"""
+    if not in_virtualenv():
+        create_and_activate_venv()
+        return False
+    return True
 
 
 def install_django(config):
-    os.system(f"pip install Django==3.2.8")
-
+    """Install Django with pip"""
+    os.system("pip install Django==3.2.8")
 
 def start_project_django_admin(config):
     #os.system(f"docker-compose exec web django-admin startproject {config['name']} .")
@@ -77,3 +91,28 @@ def update_settings_dot_py(config):
     # Append content
     with open(filename, 'a') as f:
         f.write(APPENDED)
+
+
+def get_base_prefix_compat():
+    """Get base/real prefix, or sys.prefix if there is none."""
+    return getattr(sys, "base_prefix", None) or getattr(sys, "real_prefix", None) or sys.prefix
+
+
+def in_virtualenv():
+    return get_base_prefix_compat() != sys.prefix
+
+
+def is_os_windows():
+    return os.name == "nt"
+
+
+def create_and_activate_venv():
+    os.system("python -m venv .tempvenv")
+    if is_os_windows():
+        os.system(".tempvenv/scripts/activate")
+    else:
+        os.system(".tempvenv/bin/activate")
+
+def deactivate_and_delete_venv():
+    os.system("deactivate")
+    shutil.rmtree(".tempvenv")
