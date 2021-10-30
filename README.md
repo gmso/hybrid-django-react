@@ -1,6 +1,6 @@
 # 〽️ Starter project template
 # 🤠⚛️ Dockerized hybrid Django React app 
-Starter project template using docker to build a Django app that serves React apps statically (as JavaScript files)
+Starter project template using Docker to build a Django app that serves React apps statically (as JavaScript files)
 
 ## Tech stack
   - Django (with Rest framework, PostgreSQL, SMTP gmail backend, whitenoise, etc.)
@@ -26,12 +26,16 @@ create-django-react-app
 
 You will be prompted for some information like project name, email, etc. This data is needed to change the configuration files accordingly
 
-After the script has run, you don't need this tool anymore :)
+After the script has run, you don't need this tool anymore 😀
 
 Simply start the docker container to start working:
 ```
 docker-compose up -d
 ```
+
+You can then work as usual on your Django project.
+
+The entry point of the React render can be edited from the file `frontend/index.js`
 
 ## Debugging with Docker and VSCode
 
@@ -41,13 +45,9 @@ To debug with Docker:
 
 1. Run your Docker containers as usual: `docker-compose up -d --build`
 
-3. Start the debug session from VS Code for the `[django:docker] runserver` configuration
+3. Start the debug session from VS Code for the `[django:docker] runserver` configuration (either from the Debugger menu or with `F5`)
 
-   1. Select `[django:docker] runserver` from the dropdown near the Play button in the top left.
-
-   2. Hit the Play button or hit `F5` to start debugging
-
-      - Logs will redirect to your integrated terminal as well.
+   - Logs will redirect to your integrated terminal as well.
 
 4. Set some breakpoints in functions or methods executed when needed. Usually it's Model methods or View functions
 
@@ -81,7 +81,7 @@ It's better to install external libraries from from Docker directly
    ```
    heroku create
    ```
-   Your app will get a randomly generated name, like "lazy-beyond-52146". Let's call this name [APP_NAME]
+   Your app will get a randomly generated name, like _lazy-beyond-52146_. Let's call this name _[APP_NAME]_
 3. Add environment variables that Django needs to read:
    1. DJANGO_ENVIRONMENT:
       ```
