@@ -15,5 +15,15 @@ module.exports = {
   devServer: {
     port: 80, // use any port suitable for your configuration
     host: '0.0.0.0', // to accept connections from outside container
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: "babel-loader",
+        options: { presets: ["@babel/preset-env", "@babel/preset-react"] }
+      },
+    ]
   }
 };

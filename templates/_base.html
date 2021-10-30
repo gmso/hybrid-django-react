@@ -17,8 +17,9 @@
 </head>
 
 <body>
-  <script src="{% static 'index-bundle.js' %}"></script>
   <main>
+    <div id="root"></div>
+    <script src="{% static 'index-bundle.js' %}"></script>
     {% block content %}{% endblock content %}
   </main>
 </body>

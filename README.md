@@ -43,8 +43,8 @@ It's better to install external libraries from from Docker directly
 2. JavaScript libraries:
    1. `docker-compose exec web npm install [npm_package]` for production libraries
       - Example: `docker-compose exec web npm install lodash`
-   2. `docker-compose exec web npm install -D [npm_package] --dev` for development libraries
-      - Example: `docker-compose exec web npm install --dev jest`
+   2. `docker-compose exec web npm install -D [npm_package]` for development libraries
+      - Example: `docker-compose exec web npm install -D jest`
 
 ## Deploy to Heroku
 ### First setup
