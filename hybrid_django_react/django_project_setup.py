@@ -7,14 +7,14 @@ from .django_settings_content_changes import get_settings_dot_py_changes
 
 def create_django_project(config):
     """Entry point: Creates django project"""
-    was_in_virtualenv = start_venv_if_needed()
-    install_django(config)
+    #was_in_virtualenv = start_venv_if_needed()
+    #install_django(config)
     start_project_django_admin(config)
     update_manage_dot_py(config)
     update_settings_dot_py(config)
     
-    if not was_in_virtualenv:
-        deactivate_and_delete_venv()
+    #if not was_in_virtualenv:
+    #    deactivate_and_delete_venv()
 
 
 def start_venv_if_needed():
