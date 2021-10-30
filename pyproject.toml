@@ -21,6 +21,7 @@ create-django-react-app = "hybrid_django_react.run:main"
 python = "^3.7"
 
 [tool.poetry.dev-dependencies]
+Django = "^3.2.8"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
