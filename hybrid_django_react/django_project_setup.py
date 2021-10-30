@@ -1,6 +1,6 @@
 import os
 
-from django_settings_content_changes import get_settings_dot_py_changes
+from .django_settings_content_changes import get_settings_dot_py_changes
 
 
 def create_django_project(config):
