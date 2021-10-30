@@ -5,10 +5,19 @@ from .django_settings_content_changes import get_settings_dot_py_changes
 
 def create_django_project(config):
     """Entry point: Creates django project"""
-    os.system(f"docker-compose exec web django-admin startproject {config['name']} .")
+    install_django(config)
+    start_project_django_admin(config)
     update_manage_dot_py(config)
     update_settings_dot_py(config)
 
+
+def install_django(config):
+    os.system(f"pip install Django==3.2.8")
+
+
+def start_project_django_admin(config):
+    #os.system(f"docker-compose exec web django-admin startproject {config['name']} .")
+    os.system(f"django-admin startproject {config['name']} .")
 
 def update_manage_dot_py(config):
     """Adds VSCode debugging support to manage.py"""

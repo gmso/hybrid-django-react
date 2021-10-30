@@ -9,7 +9,7 @@ Starter project template using docker to build a Django app that serves React ap
 
 ## Prerequisites
   - Docker
-  - pip, poetry, pyenv or a similar tool to access [pypi](https://pypi.org/)
+  - pip (preferably use with virtual environment)
 
 ## Installation
    Install with the following command
