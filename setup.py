@@ -29,8 +29,7 @@ setuptools.setup(
     author="Germán Mené Santa Olaya",
     author_email="german.mene@gmail.com",
     description=(
-        "Get recipes instantly with this CLI tool. "
-        "Choose specific meals or ingredients to cater to your appetite!"
+        "Starter project template. Dockerized Django serving a static React app"
     ),
     long_description=long_description,
     long_description_content_type="text/markdown",
