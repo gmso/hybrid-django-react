@@ -1,4 +1,4 @@
-# 〽️ Starter project template
+## Starter project template
 # 🤠⚛️ Dockerized hybrid Django React app 
 Starter project template using Docker to build a Django app that serves React apps statically (as JavaScript files)
 
