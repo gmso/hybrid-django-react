@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hybrid-django-react"
-version = "0.1.6"
+version = "0.1.7"
 description = "Django starter project template. Dockerized Django serving a static React app"
 authors = ["gmso <german.mene@gmail.com>"]
 license = "MIT"
