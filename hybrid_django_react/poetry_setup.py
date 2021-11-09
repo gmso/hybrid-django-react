@@ -6,7 +6,7 @@ def setup_poetry(config):
     """Entry point of module: setup poetry files and run poetry commands"""
     update_pyproject_dot_toml(config)
     #lock_poetry_dependencies()
-    #install_dependencies()
+    install_dependencies()
 
 
 def lock_poetry_dependencies_on_docker():
@@ -16,7 +16,7 @@ def lock_poetry_dependencies_on_docker():
 
 def install_dependencies():
     """Install package dependencies"""
-    os.system("poetry install")
+    os.system("pip install -r requirements.txt")
 
 
 def update_pyproject_dot_toml(config):
