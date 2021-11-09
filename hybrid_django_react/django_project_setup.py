@@ -8,7 +8,7 @@ from .django_settings_content_changes import get_settings_dot_py_changes
 def create_django_project(config):
     """Entry point: Creates django project"""
     #was_in_virtualenv = start_venv_if_needed()
-    #install_django(config)
+    install_django(config)
     start_project_django_admin(config)
     update_manage_dot_py(config)
     update_settings_dot_py(config)
@@ -27,7 +27,7 @@ def start_venv_if_needed():
 
 def install_django(config):
     """Install Django with pip"""
-    os.system("pip install Django==3.2.8")
+    os.system("pip install Django==3.2.6")
 
 def start_project_django_admin(config):
     #os.system(f"docker-compose exec web django-admin startproject {config['name']} .")
