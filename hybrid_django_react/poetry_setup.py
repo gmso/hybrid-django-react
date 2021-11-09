@@ -5,6 +5,7 @@ import os
 def setup_poetry(config):
     """Entry point of module: setup poetry files and run poetry commands"""
     update_pyproject_dot_toml(config)
+    install_poetry()
     #lock_poetry_dependencies()
     install_dependencies()
 
@@ -14,9 +15,14 @@ def lock_poetry_dependencies_on_docker():
     os.system("docker-compose exec web poetry lock")
 
 
+def install_poetry():
+    """Install package dependencies"""
+    os.system("pip install poetry==1.1.11")
+
+
 def install_dependencies():
     """Install package dependencies"""
-    os.system("pip install -r requirements.txt")
+    os.system("poetry install")
 
 
 def update_pyproject_dot_toml(config):
