@@ -53,6 +53,7 @@ def get_settings_dot_py_changes(config):
             '    # Third party\n'
             '    "allauth",\n'
             '    "allauth.account",\n'
+            '    "rest_framework",\n'
             '    # Local\n'
         ),
         "'django.contrib.sessions.middleware.SessionMiddleware',": (
@@ -139,6 +140,14 @@ def get_settings_dot_py_changes(config):
         'import dj_database_url\n\n'
         'db_from_env = dj_database_url.config(conn_max_age=500)\n'
         'DATABASES["default"].update(db_from_env)\n\n'
+        '# Django Rest Framework\n'
+        'REST_FRAMEWORK = {\n'
+        '    # Use Django standard `django.contrib.auth` permissions,\n'
+        '    # or allow read-only access for unauthenticated users.\n'
+        '    "DEFAULT_PERMISSION_CLASSES": [\n'
+        '        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"\n'
+        '    ]\n'
+        '}\n\n'
     )
 
     return (INSERTED, SUBSTITUTED, APPENDED)
